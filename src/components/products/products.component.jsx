@@ -1,8 +1,11 @@
 import React from 'react'
+import { connect } from 'react-redux';
+
+import { addItem } from '../../redux/cart/cart.actions';
 
 import './products.styles.css';
 
-function Products({ id, title, image, price, rating }) {
+function Products({ id, title, image, price, rating, addItem  }) {
     return (
         <div className='product'>
             <div className="product__info">
@@ -16,7 +19,7 @@ function Products({ id, title, image, price, rating }) {
                     {Array(rating)
                         .fill()
                         .map((_, i) => (
-                        <p>🌟</p>
+                        <p>⭐</p>
                     ))}    
                 </div>
             </div>
@@ -27,9 +30,13 @@ function Products({ id, title, image, price, rating }) {
                 alt="something"
             />
 
-            <button>Add  To Basket</button>
+            <button onClick={() => addItem({ id, title, image, price, rating })}>Add  To Basket</button>
         </div>
     )
 }
 
-export default Products
+const mapDispatchToProps = dispatch => ({
+    addItem: item => dispatch(addItem(item))
+  });
+
+export default connect(null, mapDispatchToProps)(Products);

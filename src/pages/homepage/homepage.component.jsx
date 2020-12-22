@@ -24,7 +24,7 @@ function Homepage() {
                         rating={5}    
                     />
                     <Product 
-                        id='49538094'
+                        id='25738094'
                         title='SAMSUNG 65-inch Class Crystal UHD TU-8000 Series - 
                         4K UHD HDR Smart TV with Alexa Built-in (UN65TU8000FXZA, 2020 Model)' 
                         price={659.99}
@@ -45,7 +45,7 @@ function Homepage() {
                     />
                     
                     <Product 
-                        id='49538094'
+                        id='65244094'
                         title='DuraSafe Cases for iPad PRO 11-1 Generation' 
                         price={16.99}
                         rating={3}
@@ -53,7 +53,7 @@ function Homepage() {
                     />
                     
                     <Product 
-                        id='49538094'
+                        id='215333921'
                         title='KODAK SCANZA Digital Film & Slide Scanner - Converts 35mm, 126, 
                         110, Super 8 & 8mm Film Negatives & Slides to JPEG' 
                         price={119.99}

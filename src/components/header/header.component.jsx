@@ -1,12 +1,16 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { createStructuredSelector } from 'reselect';
 
 import './header.styles.css'
 
 import SearchIcon from '@material-ui/icons/Search';
 import ShoppingBasketIcon from '@material-ui/icons/ShoppingBasket';
 
-const Header = () => {
+import { selectCartItemsCount } from '../../redux/cart/cart.selector';
+
+const Header = ({ itemCount }) => {
     return (
         <div className='header'>
             <Link to='/'>
@@ -51,7 +55,7 @@ const Header = () => {
                 <Link to='/checkout'>
                     <div className="header__optionBasket">
                         <ShoppingBasketIcon />
-                        <span className='header__optionLineTwo header__basketCount'>0</span>
+                        <span className='header__optionLineTwo header__basketCount'>{ itemCount }</span>
                     </div>
                 </Link>
 
@@ -61,4 +65,8 @@ const Header = () => {
     )
 }
 
-export default Header
+const mapStateToProps = createStructuredSelector({
+    itemCount: selectCartItemsCount
+  });
+  
+  export default connect(mapStateToProps)(Header);

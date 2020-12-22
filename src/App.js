@@ -10,8 +10,7 @@ import CheckoutPage from './pages/checkout/checkout-page.component';
 function App() {
   return (
     // BEM (really nice styling apparently)
-    <Router>
-      <div className="app">
+      <div>
         <Header />
         <Switch>
           <Route path='/checkout'>
@@ -22,8 +21,7 @@ function App() {
             <Homepage />  
           </Route>
         </Switch>
-      </div>
-    </Router>
+      </div>    
   );
 }
 
