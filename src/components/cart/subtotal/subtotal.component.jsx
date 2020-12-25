@@ -1,13 +1,14 @@
 import React from 'react'
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
+import { withRouter } from 'react-router-dom';
 import CurrencyFormat from 'react-currency-format';
 
 import './subtotal.styles.css'
 
 import { selectCartItemsCount, selectCartTotal } from '../../../redux/cart/cart.selector';
 
-function Subtotal({ itemCount, total }) {
+function Subtotal({ itemCount, total, history }) {
     return <div className='subtotal'>
             <CurrencyFormat
                 renderText={(value) => (
@@ -28,7 +29,9 @@ function Subtotal({ itemCount, total }) {
                 prefix={'E'}
             />
 
-            <button>Proceed to Checkout</button>
+            <button onClick={() => { history.push('/payment') }}>
+                Proceed to Checkout
+            </button>
         </div>
     
 };
@@ -38,4 +41,4 @@ const mapStateToProps = createStructuredSelector({
     total: selectCartTotal
   });
 
-export default connect(mapStateToProps)(Subtotal);
+export default withRouter(connect(mapStateToProps)(Subtotal));

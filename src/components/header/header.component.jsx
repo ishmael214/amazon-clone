@@ -2,6 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
+import { auth } from '../../firebase/firebase-config';
 
 import './header.styles.css'
 
@@ -9,8 +10,9 @@ import SearchIcon from '@material-ui/icons/Search';
 import ShoppingBasketIcon from '@material-ui/icons/ShoppingBasket';
 
 import { selectCartItemsCount } from '../../redux/cart/cart.selector';
+import { selectCurrentUser } from '../../redux/user/user.selectors';
 
-const Header = ({ itemCount }) => {
+const Header = ({ itemCount, currentUser }) => {
     return (
         <div className='header'>
             <Link to='/'>
@@ -26,14 +28,29 @@ const Header = ({ itemCount }) => {
             </div>
 
             <div className='header__nav'>
-                <div className='header__option'>
-                    <span className='header__optionLineOne'>
-                        Hello Guest
-                    </span>
-                    <span className='header__optionLineTwo'>
-                        Sign In
-                    </span>
-                </div>
+                <Link to='/login' >
+                    <div className='header__option'>
+                        { currentUser ? 
+                        (<>
+                            
+                            <span className='header__optionLineOne' onClick={() => auth.signOut()}>
+                            Hello, {currentUser.displayName}
+                            </span>
+                            <span className='header__optionLineTwo' onClick={() => auth.signOut()}>
+                            Sign Out
+                            </span>
+                        </>) : ( <> 
+                            <span className='header__optionLineOne'>
+                                Hello Guest
+                            </span>
+                            <span className='header__optionLineTwo'>
+                                Sign In
+                            </span>
+                        </>)  
+                    }
+                        
+                    </div>
+                </Link>
 
                 <div className='header__option'>
                     <span className='header__optionLineOne'>
@@ -66,7 +83,8 @@ const Header = ({ itemCount }) => {
 }
 
 const mapStateToProps = createStructuredSelector({
-    itemCount: selectCartItemsCount
+    itemCount: selectCartItemsCount,
+    currentUser: selectCurrentUser
   });
   
   export default connect(mapStateToProps)(Header);
