@@ -28,3 +28,12 @@
 .payment__address, .payment__items, .payment__details {
     flex: 0.8;
 }
+
+.payment__message {
+    color: red;
+    
+}
+
+.payment__message span {
+    display: grid;
+}

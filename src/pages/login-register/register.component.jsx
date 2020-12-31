@@ -32,6 +32,11 @@ class RegisterPage extends React.Component {
           alert("passwords don't match");
           return;
         }
+
+        if ( password.length < 6 || confirmPassword.length < 6) {
+          alert("passwords must be longer than 6 characters");
+          return
+        }
     
         try {
           const { user } = await auth.createUserWithEmailAndPassword(
@@ -48,7 +53,7 @@ class RegisterPage extends React.Component {
             confirmPassword: ''
           });
         } catch (error) {
-          console.error(error);
+          alert(error);
         }
       };
     
@@ -81,10 +86,10 @@ class RegisterPage extends React.Component {
                     <input type='email' value={email} onChange={this.handleChange} name='email' required/>
 
                     <h5>Password</h5>
-                    <input type='password' value={password} onChange={this.handleChange} name='password' required/>
+                    <input type='password' value={password} onChange={this.handleChange} name='password'  required/>
 
                     <h5>Confirm Password</h5>
-                    <input type='password' value={confirmPassword} onChange={this.handleChange} name='confirmPassword' required/>
+                    <input type='password' value={confirmPassword} onChange={this.handleChange} name='confirmPassword'  required/>
 
                     <button className='login__signInButton'>Register</button>
                 </form>

@@ -20,7 +20,9 @@ import { selectCurrentUser } from '../../redux/user/user.selectors';
 import './payment-page.styles.css';
 
 
+
 function PaymentPage({ cartItems, itemCount, currentUser, total, emptyCart }) {
+    
     const stripe = useStripe();
     const elements = useElements();
     const history = useHistory();
@@ -43,7 +45,7 @@ function PaymentPage({ cartItems, itemCount, currentUser, total, emptyCart }) {
     }, [cartItems])
 
     console.log('WHAT IS LEARNED IN BOATING SCHOOL IS....', clientSecret)
-
+    
     const handleSubmit = async e => {
         e.preventDefault();
         setProcessing(true);
@@ -70,7 +72,7 @@ function PaymentPage({ cartItems, itemCount, currentUser, total, emptyCart }) {
 
             emptyCart();
 
-            history.replace('/orders')
+            history.replace('/') // orignally '/orders. fix bug later
         })
     }
 
@@ -157,6 +159,11 @@ function PaymentPage({ cartItems, itemCount, currentUser, total, emptyCart }) {
                             
                             {error && <div>{error}</div>}
                         </form>
+
+                        <h5 className='payment__message'>
+                            <span>Card Number: 4242 4242 4242 4242</span>
+                            <span>MM/YY, CVC, and Zip can be anything</span>
+                        </h5>
                     </div>
                 </div>
 
