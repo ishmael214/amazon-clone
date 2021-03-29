@@ -1,3 +1,5 @@
+This is an Amazon clone but I'm currently having issues with the products ordered confirmation page so for now it refreshes to the homepage after placing a buy.
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
